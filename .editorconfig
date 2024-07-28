@@ -6,6 +6,12 @@ root = true
 # Default settings:
 [*]
 end_of_line = crlf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+
+[*.ps1]
+end_of_line = crlf
 indent_size = 4
 indent_style = space
 insert_final_newline = true
