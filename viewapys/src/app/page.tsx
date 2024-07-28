@@ -134,7 +134,7 @@ export default function Home() {
             return (
               <section>
                 <h1>
-                  APY Data ('-' means unchanged)
+                  APY Data (&apos;-&apos; means unchanged)
                 </h1>
                 <table className="table">
                   <thead>
@@ -155,7 +155,14 @@ export default function Home() {
 
                       return (
                         <tr key={index}>
-                          <td><img src={lstInfo.current[key].logo_uri} height={30} width={30} /></td>
+                          <td>
+                            <img 
+                              src={lstInfo.current[key].logo_uri} 
+                              alt={lstInfo.current[key].name} 
+                              height={30} 
+                              width={30} 
+                            />
+                          </td>
                           <td>{lstInfo.current[key].name}</td>
                           <td>{(lst.avg * 100).toFixed(2)}%</td>
                           <td>{lst.records.length}</td>
@@ -181,7 +188,7 @@ export default function Home() {
                                 return `${(lst.records[2] * 100).toFixed(2)}%`
                               }
                             })()
-                            : 'N/A'
+                            : <span>N/A</span>
                           }
                           </td>
                         </tr>
@@ -195,7 +202,7 @@ export default function Home() {
 
         <section>
           <h1>How long until we profit from an increased APY after swapping LSTs ?</h1>
-          <h4>(This isn't particularly exact nor useful but at least it's something :))</h4>
+          <h4>(This isn&apos;t particularly exact nor useful but at least it&apos;s something :))</h4>
           <label htmlFor="current-apy">
             Current APY
 
