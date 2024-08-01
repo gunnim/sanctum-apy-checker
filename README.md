@@ -9,6 +9,9 @@ Parses a list of LSTs from here https://github.com/igneous-labs/sanctum-lst-list
 PowerShell Core  
 Azure Storage Tables for data
 
+## Contributions
+PRs are welcome, I don't have changes planned currently but will probably think of something
+
 ***
 ##### Shameless plug  
 https://www.WellAdvised.cloud if you need Azure infrastructure expertise
