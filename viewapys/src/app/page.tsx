@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import { parse } from "@std/toml";
 import LST from "./lst";
+import Image from "next/image";
 
 export default function Home() {
 
@@ -200,6 +201,8 @@ export default function Home() {
             )
           })()}
 
+        <hr />
+
         <section>
           <h1>How long until we profit from an increased APY after swapping LSTs ?</h1>
           <h4>(This isn&apos;t particularly exact nor useful but at least it&apos;s something :))</h4>
@@ -224,9 +227,23 @@ export default function Home() {
               value={targetApy} />
           </label>
 
-          <p>~{daysTillProfit.toFixed(2)} days untill swap is profitable</p>
+          <p>~{daysTillProfit.toFixed(2)} days until swap is profitable</p>
         </section>
 
+        <hr />
+
+        <footer className="footer">
+          <a href="https://github.com/gunnim/sanctum-apy-checker" target="_blank">
+            <Image
+              className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
+              src="/github-mark-white.svg"
+              alt="GitHub Logo"
+              width={30}
+              height={30}
+              priority
+            />
+          </a>
+        </footer>
       </div>
     </main>
   );
