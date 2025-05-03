@@ -1,6 +1,6 @@
 "use client"
 
-import { TableServiceClient, TableClient, odata, AzureSASCredential, TableEntityResult } from "@azure/data-tables";
+import { TableServiceClient, TableClient, odata, AzureSASCredential, TableEntityResult, TableEntityResultPage } from "@azure/data-tables";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { parse } from "@std/toml";
@@ -50,17 +50,19 @@ export default function Home() {
         sasCredential
       );
 
-      // const topN = 5;
-      // const partitionKey = "jupSoLaHXQiZZTSfEWMTRRgpnyFm8f6sZdosWBjx93v";
+      let continuationToken: string | undefined = undefined;
+      let page: IteratorResult<TableEntityResultPage<Record<string, string>>, any> | undefined = undefined;
 
-      const entities = tableClient.listEntities<Record<string, string>>({
-        // queryOptions: { filter: odata`PartitionKey eq ${partitionKey}` }
-      });
-      // const iterator = entities.byPage({ maxPageSize: topN });
+      do {
+        page = await tableClient
+          .listEntities<Record<string, string>>()
+          .byPage({ maxPageSize: 100, continuationToken })
+          .next();
 
-      for await (const entity of entities) {
-        respData.push(entity)
-      }
+        respData.push(...page.value);
+      } while (!page.done);
+
+      setDataRetrieved(true);
 
       // Sort by timestamp in descending order
       respData.sort((a, b) => {
